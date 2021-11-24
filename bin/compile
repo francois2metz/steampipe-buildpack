@@ -57,6 +57,8 @@ if ! command -v $bin_dir/steampipe >/dev/null; then
 	exit 1
 fi
 
+whoami
+
 for plugin in $STEAMPIPE_PLUGINS
 do
     $bin_dir/steampipe plugin install $plugin
