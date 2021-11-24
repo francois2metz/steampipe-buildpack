@@ -24,7 +24,7 @@ cd "$tmp_dir"
 # set a trap for a clean exit - even in failures
 trap 'rm -rf $tmp_dir' EXIT
 
-tar_location="$tmp_dir/steampipe.tar.gz" ;;
+tar_location="$tmp_dir/steampipe.tar.gz"
 
 # curl uses HappyEyeball for connections, therefore, no preference is required
 if ! curl --fail --location --progress-bar --output "$tar_location" "$steampipe_uri"; then
