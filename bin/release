@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cat << EOF
+---
+addons:
+config_vars:
+  PATH: /usr/local/bin:/usr/bin:/bin
+default_process_types:
+  web: steampipe service start --foreground --database-port $PORT --database-listen 0.0.0.0
+EOF

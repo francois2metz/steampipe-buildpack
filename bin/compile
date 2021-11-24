@@ -1,0 +1,54 @@
+#!/bin/bash
+# TODO(everyone): Keep this script simple and easily auditable.
+
+set -e
+
+target="linux_amd64.tar.gz"
+
+if [ -z $STEAMPIPE_VERSION ]; then
+	steampipe_uri="https://github.com/turbot/steampipe/releases/latest/download/steampipe_${target}"
+else
+	steampipe_uri="https://github.com/turbot/steampipe/releases/download/${STEAMPIPE_VERSION}/steampipe_${target}"
+fi
+
+bin_dir="/usr/local/bin"
+exe="$bin_dir/steampipe"
+
+test -z "$tmp_dir" && tmp_dir="$(mktemp -d)"
+mkdir -p "${tmp_dir}"
+tmp_dir="${tmp_dir%/}"
+
+echo "Created temporary directory at $tmp_dir. Changing to $tmp_dir"
+cd "$tmp_dir"
+
+# set a trap for a clean exit - even in failures
+trap 'rm -rf $tmp_dir' EXIT
+
+tar_location="$tmp_dir/steampipe.tar.gz" ;;
+
+# curl uses HappyEyeball for connections, therefore, no preference is required
+if ! curl --fail --location --progress-bar --output "$tar_location" "$steampipe_uri"; then
+    echo "Could not find version $1"
+    exit 1
+fi
+
+
+echo "Deflating downloaded archive"
+tar -xf "$tar_location" -C "$tmp_dir"
+
+echo "Installing"
+install -d "$bin_dir"
+install "$tmp_dir/steampipe" "$bin_dir"
+
+echo "Applying necessary permissions"
+chmod +x $exe
+
+echo "Removing downloaded archive"
+rm "$tar_location"
+
+echo "Steampipe was installed successfully to $exe"
+
+if ! command -v $bin_dir/steampipe >/dev/null; then
+	echo "Steampipe was installed, but could not be executed. Are you sure '$bin_dir/steampipe' has the necessary permissions?"
+	exit 1
+fi
