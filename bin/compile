@@ -57,9 +57,7 @@ if ! command -v $bin_dir/steampipe >/dev/null; then
 	exit 1
 fi
 
-HOME=$BUILD_DIR
-
 for plugin in $STEAMPIPE_PLUGINS
 do
-    $bin_dir/steampipe plugin install $plugin
+    STEAMPIPE_INSTALL_DIR=$BUILD_DIR $bin_dir/steampipe plugin install $plugin
 done
