@@ -3,6 +3,10 @@
 
 set -e
 
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
 target="linux_amd64.tar.gz"
 
 if [ -z $STEAMPIPE_VERSION ]; then
@@ -11,7 +15,7 @@ else
 	steampipe_uri="https://github.com/turbot/steampipe/releases/download/${STEAMPIPE_VERSION}/steampipe_${target}"
 fi
 
-bin_dir="/usr/local/bin"
+bin_dir="$BUILD_DIR/bin"
 exe="$bin_dir/steampipe"
 
 test -z "$tmp_dir" && tmp_dir="$(mktemp -d)"
