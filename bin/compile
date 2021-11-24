@@ -56,3 +56,8 @@ if ! command -v $bin_dir/steampipe >/dev/null; then
 	echo "Steampipe was installed, but could not be executed. Are you sure '$bin_dir/steampipe' has the necessary permissions?"
 	exit 1
 fi
+
+for plugin in $STEAMPIPE_PLUGINS
+do
+    $bin_dir/steampipe plugin install $plugin
+done
