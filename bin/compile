@@ -57,7 +57,7 @@ if ! command -v $bin_dir/steampipe >/dev/null; then
 	exit 1
 fi
 
-whoami
+HOME=$BUILD_DIR
 
 for plugin in $STEAMPIPE_PLUGINS
 do
