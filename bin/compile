@@ -58,3 +58,6 @@ if ! command -v $bin_dir/steampipe >/dev/null; then
 fi
 
 STEAMPIPE_INSTALL_DIR=$BUILD_DIR/.steampipe $bin_dir/steampipe plugin install $STEAMPIPE_PLUGINS
+
+mkdir -p .steampipe/config
+find -name "*.erb" -exec bash -c "erb {} > .steampipe/config/\$(basename {} .erb)" \;
