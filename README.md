@@ -2,7 +2,7 @@
 
 Run [Steampipe][] using buildpacks.
 
-Use with Scalingo: `scalingo env-set BUILDPACK_URL=https://github.com/francois2metz/steampipe-buildpack`
+Use with [Scalingo][]: `scalingo env-set BUILDPACK_URL=https://github.com/francois2metz/steampipe-buildpack`
 
 ## Configuration
 
@@ -19,7 +19,7 @@ web: ./bin/steampipe dashboard --dashboard-port $PORT --dashboard-listen network
 
 **Raw access to the postgres**
 
-Add the tcp addon.
+Add the [tcp addon](https://doc.scalingo.com/addons/tcp-gateway/start).
 
 ```
 tcp: ./bin/steampipe service start --foreground --database-port $PORT --database-listen network
@@ -41,3 +41,4 @@ connection "datadog" {
 ```
 
 [steampipe]: https://steampipe.io/
+[scalingo]: https://scalingo.com/
