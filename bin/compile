@@ -62,6 +62,6 @@ STEAMPIPE_INSTALL_DIR=$BUILD_DIR/.steampipe $bin_dir/steampipe plugin install $S
 echo "Installing config"
 mkdir -p $BUILD_DIR/.steampipe/config
 ls $BUILD_DIR/.steampipe/config
-find -name "*.spc.erb" -exec bash -c "erb {} > $BUILD_DIR/.steampipe/config/\$(basename {} .erb)" \;
+find $BUILD_DIR -name "*.spc.erb" -exec bash -c "erb {} > $BUILD_DIR/.steampipe/config/\$(basename {} .erb)" \;
 ls $BUILD_DIR/.steampipe/config
 echo "Config done"
