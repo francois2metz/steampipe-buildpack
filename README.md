@@ -4,6 +4,11 @@ Run [Steampipe][] using buildpacks.
 
 Use with Scalingo: `scalingo env-set BUILDPACK_URL=https://github.com/francois2metz/steampipe-buildpack`
 
+## Configuration
+
+- `STEAMPIPE_VERSION`: the version of steampipe to install, latest by default (eg: `STEAMPIPE_VERSION=v0.15.3`)
+- `STEAMPIPE_PLUGINS`: a space delimited list of plugins to install (eg: `STEAMPIPE_PLUGINS=net github`
+
 ## Procfile
 
 **With dashboard**:
@@ -34,6 +39,5 @@ connection "datadog" {
   api_url = "https://api.datadoghq.com/"
 }
 ```
-
 
 [steampipe]: https://steampipe.io/
