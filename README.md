@@ -35,7 +35,7 @@ tcp: ./bin/steampipe service start --foreground --database-port $PORT --database
 
 You can copy put your config files anywhere as *.spc.erb* and they will be copied to the steampipe config directory after a pass with *erb*.
 
-Example datadog.spc.erb:
+Example `datadog.spc.erb`:
 
 ```
 connection "datadog" {
