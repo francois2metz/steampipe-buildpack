@@ -25,6 +25,12 @@ Add the [tcp addon](https://doc.scalingo.com/addons/tcp-gateway/start).
 tcp: ./bin/steampipe service start --foreground --database-port $PORT --database-listen network
 ```
 
+You should probably set a password to the steampipe instance. Set the environment variable `STEAMPIPE_PASSWORD`.
+
+```
+tcp: ./bin/steampipe service start --foreground --database-port $PORT --database-listen network --database-password $STEAMPIPE_PASSWORD
+```
+
 ## Config files
 
 You can copy put your config files anywhere as *.spc.erb* and they will be copied to the steampipe config directory after a pass with *erb*.
