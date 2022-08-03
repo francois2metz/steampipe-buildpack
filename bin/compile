@@ -67,5 +67,5 @@ find $BUILD_DIR -name "*.spc.erb" -exec bash -c "erb {} > $BUILD_DIR/.steampipe/
 echo "Successfully configured"
 
 echo "Installing mod dependencies"
-STEAMPIPE_INSTALL_DIR=$BUILD_DIR/.steampipe $bin_dir/steampipe mod install
+cd $BUILD_DIR && STEAMPIPE_INSTALL_DIR=$BUILD_DIR/.steampipe $bin_dir/steampipe mod install
 echo "Successfully installed mod dependencies"
