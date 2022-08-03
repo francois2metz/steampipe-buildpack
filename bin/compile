@@ -57,9 +57,15 @@ if ! command -v $bin_dir/steampipe >/dev/null; then
 	exit 1
 fi
 
+echo "Installing plugins"
 STEAMPIPE_INSTALL_DIR=$BUILD_DIR/.steampipe $bin_dir/steampipe plugin install $STEAMPIPE_PLUGINS
+echo "Successfully installed plugins"
 
 echo "Installing config"
 mkdir -p $BUILD_DIR/.steampipe/config
 find $BUILD_DIR -name "*.spc.erb" -exec bash -c "erb {} > $BUILD_DIR/.steampipe/config/\$(basename {} .erb)" \;
-echo "Config done"
+echo "Successfully configured"
+
+echo "Installing mod dependencies"
+STEAMPIPE_INSTALL_DIR=$BUILD_DIR/.steampipe $bin_dir/steampipe plugin install $STEAMPIPE_PLUGINS
+echo "Successfully installed mod dependencies"
